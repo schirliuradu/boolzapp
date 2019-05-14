@@ -1,0 +1,417 @@
+
+/* ------------------ */
+/* General settings */ 
+/* ------------------ */
+
+*, 
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+html {
+    font-size: 62.5%;   /* 1rem = 10px */
+}
+
+body {
+    font-size: 14px; 
+    color: black; 
+    font-family: sans-serif; 
+}
+
+/* ------------------ */
+/* General structure */ 
+/* ------------------ */
+
+.container {
+    display: flex; 
+    flex-direction: row; 
+    height: 100vh; 
+    width: 100vw;
+} 
+
+/* ------------------ */
+/*      Sidebar       */ 
+/* ------------------ */
+
+.sidebar {
+    height: 100%; 
+    flex: 0 0 35%; 
+    border-right: 1px solid darkgrey; 
+    min-width: 25rem;
+}
+
+.sidebar__header {
+    height: 6rem;
+    background-color: #e7e7e7; 
+    padding: 2rem; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;  
+}
+
+.general-image {
+    width: 4.5rem; 
+    border-radius: 50%; 
+    cursor: pointer; 
+} 
+
+.sidebar__header--options {
+    padding: .5rem; 
+    display: flex; 
+    align-items: center; 
+}
+
+.sidebar__header--options i:not(:last-child) {
+    margin-right: 2.5rem; 
+}
+
+.sidebar__input-wrapper {
+    background-color: #f8f8f8; 
+    padding: .7rem .9rem; 
+    border-bottom: .5px solid #d6d6d6; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+} 
+
+.sidebar__input-wrapper i {
+    color: darkgray;
+    font-size: 1.4rem; 
+    position: absolute; 
+    z-index: 3; 
+    left: 1.8%;
+} 
+
+.sidebar__input {
+    width: 100%; 
+} 
+
+/* Sidebar contacts */
+
+.sidebar__contact-list {
+    height: calc(100% - 48px - 6rem); 
+    overflow-y: auto; 
+}
+
+/*      contact-list scroll-bar      */
+
+.sidebar__contact-list::-webkit-scrollbar {
+  width: .5rem;
+}
+
+.sidebar__contact-list::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+.sidebar__contact-list::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+} 
+
+/* ---------------------------------------------- */
+
+.contact {
+    display: flex; 
+    align-items: center; 
+    /* padding: 1.5rem 0;  */
+    font-weight: 400; 
+    height: 7rem;
+
+    transition: background-color .3s; 
+} 
+
+.contact:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer; 
+}
+
+.contact__left {
+    width: 8rem; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.contact__right {
+    flex: 1; 
+    align-self: stretch; 
+    margin-right: 1.5rem; 
+    border-bottom: .3px solid #f0f0f0; 
+}
+
+.contact__info {
+    display: flex; 
+    padding: 1rem; 
+}
+
+.contact__info {
+    flex: 1; 
+}
+
+.contact__name {
+    font-size: 1.6rem; 
+}
+
+.contact__last-time {
+    margin-left: auto; 
+    font-size: 1.1rem; 
+    font-weight: 300; 
+    letter-spacing: .5px; 
+    color: #c7c7c7; 
+}
+
+.contact__last-message {
+    font-size: 1.5rem; 
+    color: #828282; 
+}
+
+.contact__last-message::before {
+    content: '\f00c'; 
+    display: inline-block; 
+    color: #93a9ff; 
+    margin-right: .5rem; 
+
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+}
+
+/* aux class */
+.active {
+    background-color: #e7e7e7; 
+}
+
+/* --------------------------------------------------------- */
+
+/* ------------------ */
+/*    Main Content    */ 
+/* ------------------ */
+
+.main-content {
+    height: 100%;
+    flex: 1; 
+}
+
+.header {
+    height: 6rem; 
+    padding: 2rem; 
+    background-color: #e7e7e7; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.header__left {
+    display: flex; 
+    align-items: center; 
+    font-size: 1.6rem; 
+}
+
+.header__left--image {
+    margin-right: 1.5rem; 
+}
+
+.header__right--options i {
+    margin-right: 2.5rem; 
+}
+
+
+/* ------------------ */
+/*    Message body    */ 
+/* ------------------ */
+
+.message-body {
+    height: calc(100% - 12rem);
+    background-image: url('https://backgroundcheckall.com/wp-content/uploads/2017/12/whatsapp-background-image-9.jpg'), linear-gradient(#818181, #cccccc);;
+    background-size: contain; 
+    padding: 2rem 6rem; 
+    display: flex; 
+    flex-direction: column; 
+
+    overflow-y: auto; 
+} 
+
+/*     message-body scroll-bar      */
+
+.message-body::-webkit-scrollbar {
+    width: .5rem;
+}
+
+.message-body::-webkit-scrollbar-track {
+    background: #b1b1b1; 
+}
+
+.message-body::-webkit-scrollbar-thumb {
+    background: #ffffff;
+} 
+
+.message {
+    max-width: 50rem;
+    background-color: white;
+    padding: .7rem 1rem; 
+    line-height: 1.4; 
+    font-size: 1.5rem;
+    border-radius: 1rem; 
+    margin-bottom: 1rem; 
+    box-shadow: 0px 0px 5px 0px rgba(194,194,194,1);
+    position: relative; 
+}
+
+.message--own {
+    background-color: #dbf8c6; 
+    align-self: flex-end; 
+} 
+
+.message--contact {
+    align-self: flex-start; 
+}
+
+.message--own::after {
+    content: '\f124'; 
+    display: inline-block; 
+    font-size: 1.9rem; 
+    color: #dbf8c6; 
+ 
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    transform: rotate(25deg); 
+
+    position: absolute; 
+    top: -7.5px; 
+    right: -.6rem;
+}
+
+.message--contact::before {
+    content: '\f124'; 
+    display: inline-block; 
+    font-size: 1.9rem; 
+    color: white; 
+ 
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    transform: rotate(-115deg); 
+
+    position: absolute; 
+    top: -.75rem; 
+    left: -.6rem;
+}
+
+/* ------------------ */
+/*   General Footer   */ 
+/* ------------------ */
+
+.footer {
+    height: 6rem;
+    background-color: #e7e7e7; 
+    display: flex; 
+    align-items: center; 
+} 
+
+.footer__left, 
+.footer__right {
+    flex: 0 0 10%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.footer__right i:hover {
+    color: #1ac958; 
+    transform: scale(1.2); 
+}
+
+.footer__left i, 
+.footer__right i {
+    font-size: 2.2rem !important ; 
+}
+
+.footer__input {
+    flex: 1; 
+    padding-left: 1.5rem !important;  
+    padding-top: 1rem !important;  
+    padding-bottom: 1rem !important;  
+}
+
+/* ------------------ */
+/*  Generic Elements  */ 
+/* ------------------ */
+
+.icon {
+    font-size: 1.8rem; 
+    color: #8a8a8a; 
+    cursor: pointer; 
+
+    transition: all .3s; 
+}
+
+.input {
+    border: none; 
+    outline: none; 
+    border-radius: 5rem; 
+    font-size: 1.5rem; 
+    font-weight: 300; 
+    padding-left: 3.5rem; 
+    padding-top: .8rem; 
+    padding-bottom: .8rem; 
+}
+
+.input::placeholder {
+    color: #8a8a8a; 
+}
+
+
+/* ------------------ */
+/*    Media Queries   */ 
+/* ------------------ */
+
+@media screen and (max-width: 972px) {
+
+    /* scalo tutto in proporzione */
+    html {
+      font-size: 50%;   /* 1rem = 8px */ 
+    }
+
+    .message-body {
+        padding: 2rem; 
+    } 
+
+    .header__right--options i {
+        margin-right: .5rem; 
+    }
+
+    .contact__left {
+        width: 6rem; 
+    }
+
+    .contact__last-message {
+        padding-left: 1rem; 
+    }
+
+    .message--own::after {
+        top: -.6rem;
+    }
+
+    .message--contact::before {
+        top: -.7rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .sidebar {
+        min-width: 22rem; 
+    }
+
+    .header__right--options i {
+        margin-right: .5rem; 
+    }
+
+    .icon {
+        font-size: 1.5rem; 
+    }
+
+}
