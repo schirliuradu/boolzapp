@@ -1,5 +1,4 @@
 
-
 $(document).ready(function() { 
 
     showChargePercentage(100); 
@@ -11,6 +10,8 @@ $(document).ready(function() {
     $('.footer__input').keypress(function( e ) {
         if ( e.which === 13 ) {
             aggiungiMessaggio(); 
+
+            addMessageToArray( contatti ); 
         }
     }); 
 
@@ -25,6 +26,7 @@ $(document).ready(function() {
     $('.contact').click(mostraMessaggi);  
 
 });
+
 
 function aggiungiMessaggio() { 
 
@@ -41,6 +43,12 @@ function aggiungiMessaggio() {
             answMessage.removeClass('message--own').addClass('message--contact'); 
             answMessage.children().first().text('Ciao. Va bene!'); 
             $('.message-body').append(answMessage); 
+
+            /* --------------------------- */
+
+            addMessageToArray( contatti ); 
+
+            /* --------------------------- */
 
         }, 1500);
     }
@@ -96,14 +104,14 @@ var contatti = [
         nome: 'Andrea',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
                 ora: ora()
             },
 
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
+                testoMessaggio: 'bello',
+                tipo: 'own', 
                 ora: ora()
             }
         ]
@@ -113,14 +121,8 @@ var contatti = [
         nome: 'Marco',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -130,14 +132,8 @@ var contatti = [
         nome: 'Simone',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -147,14 +143,8 @@ var contatti = [
         nome: 'Giulio',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -164,14 +154,8 @@ var contatti = [
         nome: 'Fabio',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -181,14 +165,8 @@ var contatti = [
         nome: 'Michele',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -198,14 +176,8 @@ var contatti = [
         nome: 'Francesco',
         messaggi: [
             {
-                testoMessaggio: 'consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -215,14 +187,8 @@ var contatti = [
         nome: 'Daniele',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -232,14 +198,8 @@ var contatti = [
         nome: 'Emanuele',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -249,14 +209,8 @@ var contatti = [
         nome: 'Chiara',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -266,14 +220,8 @@ var contatti = [
         nome: 'Paolo',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -283,20 +231,8 @@ var contatti = [
         nome: 'Martina',
         messaggi: [
             {
-                testoMessaggio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                testoMessaggio: 'ciao',
                 tipo: 'own', 
-                ora: ora()
-            },
-
-            {
-                testoMessaggio: 'Lorem ipsum dolor sit amet. ', 
-                tipo: 'contact', 
-                ora: ora()
-            }, 
-
-            {
-                testoMessaggio: 'Lorem. ', 
-                tipo: 'contact', 
                 ora: ora()
             }
         ]
@@ -368,9 +304,42 @@ function mostraMessaggi() {
 }
 
 
+function addNewMessage() {
+
+    var ultimoMessaggio = $('.message-body > .message').last(); 
+
+    var testoM = ultimoMessaggio.find('.message__text').text(); 
+    var classString = ultimoMessaggio.attr('class').split('--');
+    var tipoM = classString[1]; 
+    var oraM = ora(); 
+    
+    var newMessageItem = {}; 
+
+    newMessageItem.testoMessaggio = testoM; 
+    newMessageItem.tipo = tipoM; 
+    newMessageItem.ora = oraM;  
+
+    return newMessageItem; 
+}
+
+
+function addMessageToArray( arr ) {
+    var messageToAdd, index; 
+
+    messageToAdd = addNewMessage(); 
+    index = $('.contact.active').attr('data-item'); 
+    arr[index].messaggi.push(messageToAdd);   
+}
+
+
+
+
+
+// --------------------------------------------------------------------------
+
 
 // funzione che carica la percentuale di load prima di far vedere l'app
-function showChargePercentage (n) {
+function showChargePercentage ( n ) {
     for (var i = 1; i <= n; i++) {
         /* 
             IIFE, per generare una copia di i per ogni ciclo, altrimenti
@@ -383,8 +352,7 @@ function showChargePercentage (n) {
                 $('.initial-charger__number').append(iCopy + '%'); 
 
                 $('.initial-charger__bar').css('height', '10px'); 
-                $('.initial-charger__bar').css('width', iCopy + '%'); 
-
+                $('.initial-charger__bar').css('width', iCopy + '%');    
             
             }, iCopy * 25); 
         })(i);    
@@ -397,3 +365,5 @@ function showChargePercentage (n) {
     }, 3000); 
 
 } 
+
+
