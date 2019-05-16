@@ -156,6 +156,10 @@ body {
     width: 100%; 
 } 
 
+.sidebar__input:focus .sidebar__input-wrapper {
+    background-color: white; 
+}
+
 /* Sidebar contacts */
 
 .sidebar__contact-list {
@@ -321,8 +325,8 @@ body {
 }
 
 .charge-window__image {
-    width: 35%;
-    height: 35%;
+    width: 35rem;
+    height: 35rem;
     background-image: url('http://www.gamesoul.it/wp-content/uploads/2018/03/whatsapp-logo.jpg'); 
     background-position: center;
     background-size: cover;
@@ -375,7 +379,7 @@ body {
     opacity: 1; 
     position: absolute; 
     top: 4.5rem;
-    left: -5.3rem; 
+    right: 0; 
     background-color: #fdfdfd; 
     border-radius: .5rem; 
     overflow: hidden; 

@@ -1,6 +1,8 @@
 
 $(document).ready(function() { 
 
+    console.log(contatti); 
+
     // faccio partire l'app dopo 3 secondi e mostro il caricamento 
     showChargePercentage(100); 
 
@@ -59,6 +61,27 @@ $(document).ready(function() {
 
 });
 
+
+function autoAnswer() {
+
+    var arrayRisposte = [
+        'Questa è solo una delle risposte a caso che ti posso dare :) ',
+        'Questo è un altro modo in cui ti posso rispondere', 
+        'Qualsiasi cosa tu mi abbia chiesto, ti dico che va bene :D ', 
+        'Mi dispiace amico, ho le risposte limitate :D ', 
+        'Lorem ipsum dolor sit amet consecteur. ', 
+        'Questa è solo un\'altra delle risposte che ti posso dare. ', 
+        'Spero che le mie risposte non ti facciano arrabbiare. Sono solo un generatore di risposte :) ',
+        'Ammetto che potrei fare di meglio, ma per ora ti dovrai accontentare delle mie risposte. '
+    ];
+
+    var randomNumber = Math.floor( Math.random() * arrayRisposte.length ); 
+
+    return arrayRisposte[ randomNumber ]; 
+
+}
+
+
 // funzione che gestisce sia il click, che l'ENTER 
 function aggiungiMessaggio() { 
 
@@ -74,7 +97,7 @@ function aggiungiMessaggio() {
 
             var answMessage = newM.clone(); 
             answMessage.removeClass('message--own').addClass('message--contact'); 
-            answMessage.children().first().text('Ciao. Va bene!'); 
+            answMessage.children().first().text( autoAnswer() ); 
             $('.message-body').append(answMessage); 
 
             // riassegno a tutti i messaggi il data-order
@@ -252,7 +275,7 @@ function addNewMessage() {
     newMessageItem.testoMessaggio = testoM; 
     newMessageItem.tipo = tipoM; 
     newMessageItem.ora = oraM;  
-
+    
     return newMessageItem; 
 }
 
