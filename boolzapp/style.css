@@ -31,9 +31,42 @@ body {
     display: flex; 
     align-items: center; 
     justify-content: center; 
+    overflow: hidden;
     /* background-color: #d7dbd6; */
 }
 
+/*  -----------  */
+
+.initial-charger {
+    width: 100%; 
+    height: 100%; 
+    background-color: #cecece; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.initial-charger__content {
+    width: 40%; 
+    height: 60%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.initial-charger__number {
+    font-size: 10rem; 
+    margin-bottom: 10rem; 
+    color: #009688; 
+}
+
+.initial-charger__bar {
+    background-color: #009688;
+    align-self: flex-start;  
+}
+
+/*  -----------  */
 .riga {
     width: 100%;
     height: 10rem;
@@ -52,6 +85,7 @@ body {
     z-index: 2; 
     border-radius: .4rem; 
     box-shadow: 0px 1px 5px 0px rgba(163,163,163,1);
+    display: none; 
 } 
 
 /* ------------------ */
@@ -275,6 +309,34 @@ body {
     background: #8a8a8a;
 } 
 
+.charge-window {
+    width: 100%;
+    height: 100%;
+    background-color: #d6d6d6; 
+
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.charge-window__image {
+    width: 35%;
+    height: 35%;
+    background-image: url('http://www.gamesoul.it/wp-content/uploads/2018/03/whatsapp-logo.jpg'); 
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;  
+    margin-bottom: 10rem; 
+    box-shadow: 0 0 1.3rem .4rem rgba(89,89,89,1);
+}
+
+.charge-window__text {
+    color:  #235251;  
+    font-size: 2.5rem; 
+    letter-spacing: 1px; 
+} 
+
 .message {
     background-color: white;
     padding: 1rem 4rem 1rem 1rem; 
@@ -403,6 +465,17 @@ body {
     color: #8a8a8a; 
 }
 
+/* ------------------ */
+/*     aux classes    */ 
+/* ------------------ */
+
+.closed {
+    display: none; 
+}
+
+.opened {
+    display: flex; 
+}
 
 /* ------------------ */
 /*    Media Queries   */ 
@@ -413,10 +486,6 @@ body {
     /* scalo tutto in proporzione */
     html {
       font-size: 50%;   /* 1rem = 8px */ 
-    }
-
-    .sidebar {
-        height: 100%;
     }
 
     .message-body {
@@ -436,42 +505,27 @@ body {
     }
 
     .message--own::after {
-        top: -.65rem;
+        top: -.6rem;
     }
 
-    .contact__last-message::before {
-        margin-left: 0;
-        margin-right: .5rem; 
-    } 
-
-    .input {
-        font-size: 1.3rem;  
+    .message--contact::before {
+        top: -.7rem;
     }
 }
 
 @media screen and (max-width: 768px) {
 
-    .container { 
+    .container {
+        width: 100%;
         height: 100%;
-        width: 100%; 
-    } 
+    }
 
-
-    
     .sidebar {
-        min-width: 25rem; 
+        min-width: 22rem; 
     }
 
     .header__right--options i {
         margin-right: .5rem; 
-    }
-
-    .message {
-        padding: .5rem 1rem 1.5rem; 
-    }
-
-    .message__time {
-        bottom: 0; 
     }
 
     .icon {
