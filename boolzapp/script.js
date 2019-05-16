@@ -1,45 +1,4 @@
 
-// var dataController = (function() {
-
-
-//     // Public methods 
-//     return {
-
-//     }
-
-// })(); 
-
-
-// var UIController = (function() {
-
-
-//     // Public methods 
-//     return {
-
-//     }
-
-// })(); 
-
-
-// var generalController = (function( $ ) {
-
-//     var x = 15; 
-//     var testo = $(".testoProva");
- 
-//     // Public methods 
-//     return {
-//         addNumber: function( y ) {
-//             return (x + y); 
-//         },
-
-//         addClassBello: function(){
-//             return testo.text('testo cambiato!');
-//         }
-//     }
-
-// })( jQuery ); 
-
-/* ------------------------------------------------ */
 
 $(document).ready(function() { 
 
