@@ -1,0 +1,604 @@
+
+/* ------------------ */
+/* General settings */ 
+/* ------------------ */
+
+*, 
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+html {
+    font-size: 62.5%;   /* 1rem = 10px */
+}
+
+body {
+    font-size: 13px; 
+    color: black; 
+    font-family: sans-serif; 
+}
+
+/* ------------------ */
+/* General structure */ 
+/* ------------------ */
+
+.general-container {
+    height: 100vh; 
+    width: 100vw; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden;
+    /* background-color: #d7dbd6; */
+}
+
+/*  -----------  */
+
+.initial-charger {
+    width: 100%; 
+    height: 100%; 
+    background-color: #cecece; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.initial-charger__content {
+    width: 40%; 
+    height: 60%;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.initial-charger__number {
+    font-size: 10rem; 
+    margin-bottom: 10rem; 
+    color: #009688; 
+}
+
+.initial-charger__bar {
+    background-color: #009688;
+    align-self: flex-start;  
+}
+
+/*  -----------  */
+.riga {
+    width: 100%;
+    height: 10rem;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    background-color: #009688; 
+}
+
+.container { 
+    display: flex; 
+    flex-direction: row; 
+    height: 90%;
+    width: 85%;
+    overflow: hidden; 
+    z-index: 2; 
+    border-radius: .4rem; 
+    box-shadow: 0px 1px 5px 0px rgba(163,163,163,1);
+    display: none; 
+} 
+
+/* ------------------ */
+/*      Sidebar       */ 
+/* ------------------ */
+
+.sidebar {
+    height: 100%; 
+    flex: 0 0 35%; 
+    border-right: 1px solid darkgrey; 
+    min-width: 25rem;
+    background-color: white; 
+}
+
+.sidebar__header {
+    height: 6rem;
+    background-color: #e7e7e7; 
+    padding: 1rem; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;  
+}
+
+.sidebar__header--image {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.general-image {
+    width: 4rem; 
+    border-radius: 50%; 
+    cursor: pointer; 
+} 
+
+.sidebar__header--options {
+    padding: .5rem; 
+    display: flex; 
+    align-items: center; 
+}
+
+.sidebar__header--options i:not(:last-child) {
+    margin-right: 2.5rem; 
+}
+
+.sidebar__input-wrapper {
+    background-color: #f8f8f8; 
+    padding: .7rem .9rem; 
+    border-bottom: .5px solid #d6d6d6; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
+} 
+
+.sidebar__input-wrapper i {
+    color: #d6d6d6;
+    z-index: 3; 
+    font-size: 1.4rem; 
+    position: absolute; 
+    z-index: 3; 
+    left: 2rem;
+} 
+
+.sidebar__input {
+    width: 100%; 
+} 
+
+.sidebar__input:focus .sidebar__input-wrapper {
+    background-color: white; 
+}
+
+/* Sidebar contacts */
+
+.sidebar__contact-list {
+    height: calc(100% - 48px - 6rem); 
+    overflow-y: auto; 
+}
+
+/*      contact-list scroll-bar      */
+
+.sidebar__contact-list::-webkit-scrollbar {
+  width: .5rem;
+}
+
+.sidebar__contact-list::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+.sidebar__contact-list::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+} 
+
+/* ---------------------------------------------- */
+
+.contact {
+    display: flex; 
+    align-items: center; 
+    font-weight: 400; 
+    height: 7rem;
+    transition: background-color .3s; 
+} 
+
+.contact:hover {
+    background-color: #f0f0f0; 
+    cursor: pointer; 
+}
+
+.contact__left {
+    width: 6rem; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.contact__right {
+    flex: 1; 
+    align-self: stretch; 
+    margin-right: 1.5rem; 
+    border-bottom: .3px solid #f0f0f0; 
+}
+
+.contact__info {
+    flex: 1; 
+    display: flex; 
+    padding: 1.5rem 1rem 1rem; 
+}
+
+.contact__name {
+    font-size: 1.4rem; 
+}
+
+.contact__last-time {
+    margin-left: auto; 
+    font-size: 1.1rem; 
+    font-weight: 300; 
+    letter-spacing: .5px; 
+    color: #c7c7c7; 
+}
+
+.contact__last-message {
+    font-size: 1.3rem; 
+    color: #828282; 
+}
+
+.contact__last-message::before {
+    content: '\f00c'; 
+    display: inline-block; 
+    color: #93a9ff; 
+    margin: 0 1rem; 
+
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+}
+
+/* aux class */
+.active {
+    background-color: #e7e7e7; 
+}
+
+/* --------------------------------------------------------- */
+
+/* ------------------ */
+/*    Main Content    */ 
+/* ------------------ */
+
+.main-content {
+    height: 100%;
+    flex: 1; 
+}
+
+.header {
+    height: 6rem; 
+    padding: 2rem; 
+    background-color: #e7e7e7; 
+
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.header__left {
+    display: flex; 
+    align-items: center; 
+    font-size: 1.6rem; 
+}
+
+.header__left--image {
+    margin-right: 1.5rem; 
+}
+
+.header__right--options i {
+    margin-right: 2.5rem; 
+}
+
+
+/* ------------------ */
+/*    Message body    */ 
+/* ------------------ */
+
+.message-body {
+    height: calc(100% - 12rem);
+    background-image: url('https://backgroundcheckall.com/wp-content/uploads/2017/12/whatsapp-background-image-9.jpg'), linear-gradient(#818181, #cccccc);;
+    background-size: contain; 
+    padding: 2rem 6rem; 
+    display: flex; 
+    flex-direction: column; 
+
+    overflow-y: auto; 
+} 
+
+/*     message-body scroll-bar      */
+
+.message-body::-webkit-scrollbar {
+    width: .5rem;
+}
+
+.message-body::-webkit-scrollbar-track {
+    background: #e7e7e7; 
+}
+
+.message-body::-webkit-scrollbar-thumb {
+    background: #8a8a8a;
+} 
+
+.charge-window {
+    width: 100%;
+    height: 100%;
+    background-color: #d6d6d6; 
+
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.charge-window__image {
+    width: 30rem;
+    height: 30rem;
+    background-image: url('http://www.gamesoul.it/wp-content/uploads/2018/03/whatsapp-logo.jpg'); 
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;  
+    margin-bottom: 10rem; 
+    box-shadow: 0 0 1.3rem .4rem rgba(89,89,89,1);
+}
+
+.charge-window__text {
+    color:  #235251;  
+    font-size: 2.5rem; 
+    letter-spacing: 1px; 
+} 
+
+.message {
+    background-color: white;
+    padding: 1rem 4rem 1rem 1rem; 
+    line-height: 1.4; 
+    font-size: 1.4rem;
+    border-radius: 1rem; 
+    max-width: 50rem; 
+    position: relative; 
+    box-shadow: 0px 0px 5px 0px rgba(194,194,194,1); 
+    align-self: flex-end; 
+    position: relative; 
+} 
+
+
+/*  delete message option  */
+
+.message__time::before {
+    content: '\f107'; 
+    display: none; 
+    font-size: 1.8rem; 
+    color: #b4b4b4; 
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    position: absolute; 
+    top: -2rem; 
+    right: 1rem;
+} 
+
+.message:hover .message__time::before {
+    display: inline-block; 
+    cursor: pointer; 
+}
+
+.dropdown-wrapper { 
+    display: none; 
+    opacity: 1; 
+    position: absolute; 
+    top: 4.5rem;
+    right: 0; 
+    background-color: #fdfdfd; 
+    border-radius: .5rem; 
+    overflow: hidden; 
+    z-index: 1000; 
+    box-shadow: 0px 3px 5px 2px rgba(186,186,186,1);
+
+    transition: opacity 1s; 
+}
+
+.aperto {
+    display: block; 
+    opacity: 1; 
+}
+
+.message__options {
+    display: flex; 
+    flex-direction: column; 
+    list-style-type: none; 
+    color: #818181; 
+    align-items: center; 
+    white-space: nowrap; 
+} 
+
+.message__option {
+    width: 100%; 
+    padding: 1.5rem; 
+}
+
+.message__option:hover {
+    background-color: #dddddd; 
+    cursor: pointer; 
+} 
+
+/* .message__time::after:hover + .dropdown-wrapper {
+    display: block; 
+} */
+
+/* ------------------------- */
+
+.message__time {
+    font-size: 1rem; 
+    padding-right: .8rem; 
+    padding-bottom: .2rem; 
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    color: #a1a1a1; 
+} 
+
+.message:not(:last-child) {
+    margin-bottom: 1rem; 
+}
+
+.message--own {
+    background-color: #dbf8c6; 
+    align-self: flex-end; 
+} 
+
+.message--contact {
+    align-self: flex-start; 
+}
+
+.message--own::after {
+    content: '\f124'; 
+    display: inline-block; 
+    font-size: 1.9rem; 
+    color: #dbf8c6; 
+ 
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    transform: rotate(25deg); 
+
+    position: absolute; 
+    top: -7px; 
+    right: -.6rem;
+}
+
+.message--contact::before {
+    content: '\f124'; 
+    display: inline-block; 
+    font-size: 1.9rem; 
+    color: white; 
+ 
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    transform: rotate(-115deg); 
+    position: absolute; 
+    top: -.7rem; 
+    left: -.6rem;
+}
+
+/* ------------------ */
+/*   General Footer   */ 
+/* ------------------ */
+
+.footer {
+    height: 6rem;
+    background-color: #e7e7e7; 
+    display: flex; 
+    align-items: center; 
+} 
+
+.footer__left, 
+.footer__right {
+    flex: 0 0 10%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.footer__right i:hover {
+    color: #1ac958; 
+    transform: scale(1.2); 
+}
+
+.footer__left i, 
+.footer__right i {
+    font-size: 2.2rem !important ; 
+}
+
+.footer__input {
+    flex: 1; 
+    padding-left: 1.5rem !important;  
+    padding-top: 1rem !important;  
+    padding-bottom: 1rem !important;  
+}
+
+/* ------------------ */
+/*  Generic Elements  */ 
+/* ------------------ */
+
+.icon {
+    font-size: 1.6rem; 
+    color: #8a8a8a; 
+    cursor: pointer; 
+
+    transition: all .3s; 
+}
+
+.input {
+    border: none; 
+    outline: none; 
+    border-radius: 5rem; 
+    font-size: 1.5rem; 
+    font-weight: 300; 
+    padding-left: 3.5rem; 
+    padding-top: .8rem; 
+    padding-bottom: .8rem; 
+}
+
+.input::placeholder {
+    color: #8a8a8a; 
+}
+
+/* ------------------ */
+/*     aux classes    */ 
+/* ------------------ */
+
+.closed {
+    display: none; 
+}
+
+.opened {
+    display: flex; 
+}
+
+/* ------------------ */
+/*    Media Queries   */ 
+/* ------------------ */
+
+@media screen and (max-width: 972px) {
+
+    /* scalo tutto in proporzione */
+    html {
+      font-size: 50%;   /* 1rem = 8px */ 
+    }
+
+    .message-body {
+        padding: 2rem; 
+    } 
+
+    .header__right--options i {
+        margin-right: .5rem; 
+    }
+
+    .contact__left {
+        width: 6rem; 
+    }
+
+    .contact__last-message {
+        padding-left: 1rem; 
+    }
+
+    .message--own::after {
+        top: -.6rem;
+    }
+
+    .message--contact::before {
+        top: -.7rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sidebar {
+        min-width: 22rem; 
+    }
+
+    .header__right--options i {
+        margin-right: .5rem; 
+    }
+
+    .icon {
+        font-size: 1.5rem; 
+    }
+
+}
