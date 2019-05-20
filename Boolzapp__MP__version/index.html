@@ -36,18 +36,7 @@
                     <input type="text" placeholder="Cerca o inizia una nuova chat" class="input sidebar__input">
                 </div>
                 <div class="sidebar__contact-list"> 
-                    <div class="contact" data-item="">
-                        <div class="contact__left">
-                            <img class="general-image" src="img/contact.jpg" alt="Profile image"> 
-                        </div> 
-                        <div class="contact__right">
-                            <div class="contact__info">
-                                <span class="contact__name"> </span>
-                                <span class="contact__last-time"> </span>
-                            </div>
-                            <p class="contact__last-message"> </p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
@@ -94,7 +83,40 @@
         </div>
     </div>
 
+    <!-- ------- Handlebars template scripts ----------- -->
+
+    <script id="contact-template" type="text/x-handlebars-template">
+      <div class="contact" data-item="{{dataItem}}">
+            <div class="contact__left">
+                <img class="general-image" src="img/contact.jpg" alt="Profile image"> 
+            </div> 
+            <div class="contact__right">
+                <div class="contact__info">
+                    <span class="contact__name">{{name}}</span>
+                    <span class="contact__last-time">{{lastTime}}</span>
+                </div>
+                <p class="contact__last-message">{{lastMessage}}</p>
+            </div>
+        </div>
+    </script>
+
+    <script id="message-template" type="text/x-handlebars-template">
+        <div class="message message--{{curMessType}}">
+            <p class="message__text">{{curMessText}}</p>
+            <span class="message__time">{{curMessTime}}</span>
+            <div class="dropdown-wrapper">
+                <ul class="message__options">
+                    <li class="message__option message__option--1">Message info</li>
+                    <li class="message__option message__option--2">Delete message</li>
+                </ul>
+            </div>
+        </div>
+    </script>
+
+    <!-- ----------------------------------------------- -->
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

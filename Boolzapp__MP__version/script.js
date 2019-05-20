@@ -31,6 +31,12 @@ var dataController = (function( $ ) {
                     testoMessaggio: 'Non credo di farcela. Vediamo...',
                     tipo: 'own', 
                     ora: ora()
+                },
+
+                {
+                    testoMessaggio: 'Io credo invece che tu ce la possa fare! ',
+                    tipo: 'contact', 
+                    ora: ora()
                 }
             ]
         }, 
@@ -178,22 +184,33 @@ var dataController = (function( $ ) {
     }
 
     // funzione che genera la struttura (un oggetto) di un nuovo messaggio, che poi vado a inserire nell'array messaggi (sotto)
-    function addNewMessage() {
+    function addNewMessage () {
         var ultimoMessaggio, testoM, classString, tipoM, oraM, newMessageItem; 
 
         ultimoMessaggio = $('.message-body > .message').last(); 
 
-        testoM = ultimoMessaggio.find('.message__text').text(); 
-        classString = ultimoMessaggio.attr('class').split('--');
-        tipoM = classString[1]; 
-        oraM = ora(); 
-        
-        newMessageItem = {}; 
+        if ( $('.message-body').children().length !== 0 ) {
 
+            testoM = ultimoMessaggio.find('.message__text').text(); 
+            classString = ultimoMessaggio.attr('class').split('--'); 
+            tipoM = classString[1]; 
+            oraM = ora(); 
+
+        } else {
+
+            alert('vuoto'); 
+
+            testoM = inputMess; 
+            tipoM = "own";  
+            oraM = ora(); 
+        }
+
+        newMessageItem = {}; 
+    
         newMessageItem.testoMessaggio = testoM; 
         newMessageItem.tipo = tipoM; 
         newMessageItem.ora = oraM;  
-        
+
         return newMessageItem; 
     }
 
@@ -299,21 +316,25 @@ var UIController = (function( $ ) {
 
     // funzione che crea il template del singolo contatto e ci mette dentro le info ripescate nell'array contatti
     function createContacts( arr , index ) { 
-        var clonato, nome, tempo, ultimoMessaggio, indiceUltimoMessaggio; 
+        var nome, tempo, ultimoMessaggio, indiceUltimoMessaggio, source, modelloContatto, parametri, contatto; 
 
-        clonato = $('.sidebar__contact-list').children().first().clone(); 
-        nome = clonato.find('.contact__name');  
-        nome.text(arr[index].nome); 
-        tempo = clonato.find('.contact__last-time'); 
-        tempo.text( arr[index].messaggi[0].ora ); 
-        ultimoMessaggio = clonato.find('.contact__last-message'); 
+        nome = arr[index].nome; 
+        tempo = arr[index].messaggi[0].ora; 
         indiceUltimoMessaggio = arr[index].messaggi.length - 1; 
-        ultimoMessaggio.text(arr[index].messaggi[ indiceUltimoMessaggio ].testoMessaggio); 
-        clonato.attr("data-item", index);
+        ultimoMessaggio = arr[index].messaggi[ indiceUltimoMessaggio ].testoMessaggio; 
+    
+        source = $("#contact-template").html();
+        modelloContatto = Handlebars.compile(source);
 
-        ultimoMessaggio.text( stringHandle(ultimoMessaggio.text()) ) ;  
+        parametri = {
+            name: nome, 
+            lastTime: tempo,
+            lastMessage: stringHandle( ultimoMessaggio ),
+            dataItem: index
+        };
 
-        $('.sidebar__contact-list').append(clonato); 
+        contatto = modelloContatto(parametri); 
+        $('.sidebar__contact-list').append(contatto); 
     } 
 
     function changeUserInSidebar( clickedElement ) {
@@ -333,25 +354,37 @@ var UIController = (function( $ ) {
 
 
     function generateContactsMessagesInTheUI( arr, clickedElement, callbackF ) {
-        var indice, lunghezza, currentMessageText, currentMessageType, currentMessageTime, newMessage; 
+        var indice, lunghezza, currentMessageText, currentMessageType, currentMessageTime, source, modelloMessaggio, parametri, newMessage; 
 
         // stampo tutti i messaggi del contatto selezionato  
         indice = clickedElement.attr('data-item'); 
-        lunghezza = arr[indice].messaggi.length;
-        for (i = 0; i < lunghezza; i++) {
+        lunghezza = arr[indice].messaggi.length; 
 
-            currentMessageText = arr[indice].messaggi[i].testoMessaggio; 
-            currentMessageType = arr[indice].messaggi[i].tipo; 
-            currentMessageTime = arr[indice].messaggi[i].ora; 
+        if ( lunghezza !== 0 ) {
 
-            // generare tutto l'HTML per il messaggio, e assegnarli la classe in base al tipo ! 
-            newMessage = '<div class="message message--' + currentMessageType + '"><p class="message__text">' + currentMessageText + '</p><span class="message__time">' + currentMessageTime + '</span><div class="dropdown-wrapper"><ul class="message__options"><li class="message__option message__option--1">Message info</li><li class="message__option message__option--2">Delete message</li></ul></div> </div>'
+            for (i = 0; i < lunghezza; i++) {
 
-            $('.message-body').append(newMessage); 
-
-            // riassegno il data-order 
-            callbackF(); 
-        }
+                currentMessageText = arr[indice].messaggi[i].testoMessaggio; 
+                currentMessageType = arr[indice].messaggi[i].tipo; 
+                currentMessageTime = arr[indice].messaggi[i].ora; 
+    
+                source = $("#message-template").html();
+                modelloMessaggio = Handlebars.compile(source); 
+    
+                parametri = {
+                    curMessType: currentMessageType, 
+                    curMessText: currentMessageText,
+                    curMessTime: currentMessageTime 
+                }; 
+    
+                newMessage = modelloMessaggio(parametri);
+                $('.message-body').append(newMessage); 
+    
+                // riassegno il data-order 
+                callbackF(); 
+            }
+    
+        } 
     }
 
 
@@ -381,7 +414,7 @@ var UIController = (function( $ ) {
             for (var i = 0; i < arr.length; i++) {
                 createContacts( arr, i); 
             }
-            $('.sidebar__contact-list').children().first().remove(); 
+            // $('.sidebar__contact-list').children().first().remove(); 
         },
 
         // funzione che filtra la ricerca nella input della sidebar 
@@ -411,7 +444,10 @@ var UIController = (function( $ ) {
         // funzione che gestisce la tendina opzione di cancellazione dei messaggi (anche al click fuori la chiude lo stesso)
         dropdownHandler: function( e ) {
             if ( $(e.target).hasClass('message__time') ) {
-                $(e.target).next().toggleClass( 'aperto' ); 
+                $('.dropdown-wrapper').removeClass('aperto'); 
+
+                actualTarget = $(e.target); 
+                actualTarget.next().toggleClass( 'aperto' ); 
             } else { 
                 $('.dropdown-wrapper').removeClass('aperto'); 
             } 
@@ -427,19 +463,29 @@ var UIController = (function( $ ) {
 
         // funzione che cambia dinamicamente l'ultimo messaggio (ricevuto / mandato) da ogni utente presente nella sidebar 
         lastMessageUpdate: function( arr ) {
-            var index, utente, indiceUltimoMessaggio, tempo;
+            var index, utente, lunghezzaArrayMessaggi, indiceUltimoMessaggio, tempo;
 
             index = $('.contact.active').attr('data-item'); 
             // aggiorno l'ultimo messaggio che l'utente ha ricevuto o ha scritto 
             utente = $('.contact.active').find('.contact__last-message');  
-            indiceUltimoMessaggio = arr[index].messaggi.length - 1; 
-            utente.text(arr[index].messaggi[ indiceUltimoMessaggio ].testoMessaggio); 
+
+            lunghezzaArrayMessaggi = arr[index].messaggi.length; 
+
+            if ( lunghezzaArrayMessaggi !== 0 ) {
+
+                indiceUltimoMessaggio = lunghezzaArrayMessaggi - 1; 
+                utente.text(arr[index].messaggi[ indiceUltimoMessaggio ].testoMessaggio); 
+        
+                // se è più lunga di quanto voglio io, la taglio (vedi stringHandle sopra)
+                utente.text( stringHandle(utente.text()) ); 
+                // aggiorno l'ora dell'ultimo messaggio nel contatto in sidebar 
+                tempo = $('.contact.active').find('.contact__last-time'); 
+                tempo.text( arr[index].messaggi[ indiceUltimoMessaggio ].ora ); 
     
-            // se è più lunga di quanto voglio io, la taglio (vedi stringHandle sopra)
-            utente.text( stringHandle(utente.text()) ); 
-            // aggiorno l'ora dell'ultimo messaggio nel contatto in sidebar 
-            tempo = $('.contact.active').find('.contact__last-time'); 
-            tempo.text( arr[index].messaggi[ indiceUltimoMessaggio ].ora ); 
+            } else {
+                utente.text( stringHandle("Non ci sono messaggi presenti in questa conversazione!") ); 
+            }
+
         }, 
 
         // funzione che mostra nella UI i messaggi 
@@ -482,7 +528,7 @@ var appController = (function( $, DATACtrl, UICtrl ) {
 
     // funzione che gestisce l'introduzione di nuovi messaggi sia al click che all'ENTER 
     function aggiungiMessaggio() { 
-        var inputV = $('.footer__input').val().toLowerCase();  
+        var inputV = $('.footer__input').val();  
 
         if ( inputV ) {
             message = UICtrl.appendNewMessage( inputV ); 
@@ -555,7 +601,8 @@ var appController = (function( $, DATACtrl, UICtrl ) {
 
     return {
         runApp: function() { 
-            eventHandlers();
+            eventHandlers(); 
+            console.log( c ); 
         }
     }
 
